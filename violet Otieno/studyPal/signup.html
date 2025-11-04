@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up | StudyPal</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="auth.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Sign Up</h1>
+    <div class="auth-card">
+      <input type="email" id="email" placeholder="Email" required>
+      <select id="school">
+        <option value="">Select your University</option>
+        <option>University of Nairobi</option>
+        <option>Kenyatta University</option>
+        <option>Moi University</option>
+        <option>Jomo Kenyatta University of Agriculture and Technology</option>
+        <option>Egerton University</option>
+        <option value="other">Other (enter manually)</option>
+      </select>
+      <input type="text" id="manualSchool" placeholder="Enter school name" style="display:none;">
+      <input type="password" id="password" placeholder="Password" required>
+      <button id="signupBtn">Create Account</button>
+      <p style="text-align:center;margin-top:10px">Already have an account? <a href="login.html">Login</a></p>
+    </div>
+  </div>
+</body>
+</html>
+

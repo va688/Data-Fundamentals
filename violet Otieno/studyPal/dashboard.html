@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Study Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div class="header-left">
+        <h1 class="brand-title-dash">🎓 StudyPal</h1>
+        <p class="welcome-text" id="welcomeMsg">Welcome, User</p>
+      </div>
+      <nav class="header-nav">
+        <a href="#courses" class="nav-link">Courses</a>
+        <a href="#tasks" class="nav-link">Tasks</a>
+        <a href="#timetable" class="nav-link">Timetable</a>
+        <a href="#lecturers" class="nav-link">Lecturers</a>
+        <button id="navNotifyBtn" class="nav-icon-btn" title="Notifications" aria-label="Notifications">🔔</button>
+        <button id="logoutBtn" class="logout-btn">Logout</button>
+      </nav>
+    </header>
+
+    <!-- Main Content Grid -->
+    <div class="dashboard-grid">
+      <!-- Left Column -->
+      <div class="dashboard-main">
+        <section id="courses" class="card">
+          <h2>📚 My Courses</h2>
+          <div class="input-group">
+            <input type="text" id="courseName" placeholder="Course Name">
+            <button id="addCourseBtn">Add Course</button>
+          </div>
+          <ul id="courseList" class="item-list"></ul>
+        </section>
+
+        <section id="tasks" class="card">
+          <h2>📋 Assignments & Tasks</h2>
+          <div class="input-group">
+            <input type="text" id="taskName" placeholder="Task/Assignment Name">
+            <input type="date" id="taskDate">
+            <button id="addTaskBtn">Add Task</button>
+          </div>
+          <div class="quick-row">
+            <button class="chip-btn" data-date="today">Today</button>
+            <button class="chip-btn" data-date="tomorrow">Tomorrow</button>
+            <button class="chip-btn" data-date="next7">In 7 days</button>
+            <button class="chip-btn" data-date="next30">In 30 days</button>
+          </div>
+          <table id="taskTable" class="table">
+            <thead>
+              <tr>
+                <th>Task</th>
+                <th>Due Date</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="taskBody"></tbody>
+          </table>
+        </section>
+
+        <section id="timetable" class="card">
+          <h2>⏰ Timetable</h2>
+          <div class="input-group">
+            <select id="timetableUnit">
+              <option value="">Select unit</option>
+            </select>
+            <input type="text" id="timetableLecturer" placeholder="Lecturer" list="lecturersDatalist">
+            <select id="lectureDay">
+              <option value="">Day</option>
+              <option>Monday</option>
+              <option>Tuesday</option>
+              <option>Wednesday</option>
+              <option>Thursday</option>
+              <option>Friday</option>
+              <option>Saturday</option>
+              <option>Sunday</option>
+            </select>
+            <input type="time" id="lectureTime">
+            <input type="text" id="lectureVenue" placeholder="Venue / Room e.g., LH1">
+            <button id="addLectureBtn">Add Lecture</button>
+          </div>
+          <div class="quick-row" style="justify-content: flex-end; gap: 8px;">
+            <label for="notifyLead" style="font-size:12px;color:#55657a">Notify before:</label>
+            <select id="notifyLead" style="max-width:160px">
+              <option value="15">15 minutes</option>
+              <option value="30" selected>30 minutes</option>
+              <option value="60">1 hour</option>
+              <option value="120">2 hours</option>
+              <option value="1440">1 day</option>
+            </select>
+          </div>
+          <table id="timetableTable" class="table">
+            <thead>
+              <tr>
+                <th>Day</th>
+                <th>Course</th>
+                <th>Lecturer</th>
+                <th>Time</th>
+                <th>Venue</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="timetableBody"></tbody>
+          </table>
+          <datalist id="lecturersDatalist"></datalist>
+        </section>
+
+        <section id="lecturers" class="card">
+          <h2>👨‍🏫 Lecturer Details</h2>
+          <div class="input-group">
+            <input type="text" id="lecturerName" placeholder="Lecturer Name*">
+            <input type="text" id="relatedCourse" placeholder="Related Course*" list="coursesDatalist">
+            <input type="email" id="lecturerEmail" placeholder="Lecturer Email (optional)">
+            <input type="tel" id="lecturerPhone" placeholder="Phone (optional)">
+            <button id="addLecturerBtn">Add Lecturer</button>
+          </div>
+          <datalist id="coursesDatalist"></datalist>
+          <ul id="lecturerList" class="item-list"></ul>
+        </section>
+      </div>
+
+      <!-- Right Column (Sidebar) -->
+      <div class="dashboard-sidebar">
+        <section class="card">
+          <h2>📚 Recommended Books</h2>
+          <p class="card-desc">Get AI-powered book recommendations for your courses</p>
+          <button id="recommendBooksBtn" class="feature-btn">Get Recommendations</button>
+          <ul id="recommendationsList" class="item-list"></ul>
+        </section>
+
+        <section class="card">
+          <h2>🧠 Study Schedule</h2>
+          <p class="card-desc">Generate a personalized study schedule based on your timetable and upcoming tasks</p>
+          <button id="generateScheduleBtn" class="feature-btn">Generate Schedule</button>
+          <ul id="scheduleList" class="item-list"></ul>
+        </section>
+
+        <section id="notifications" class="card">
+          <h2>🔔 Notifications</h2>
+          <p class="card-desc">Enable desktop alerts for upcoming lectures and due tasks</p>
+          <div class="input-group" style="margin-bottom:8px">
+            <button id="enableNotificationsBtn">Enable Notifications</button>
+          </div>
+          <p id="notificationsStatus" class="card-desc" style="margin:0"></p>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastContainer" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
