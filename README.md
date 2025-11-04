@@ -36,7 +36,7 @@ StudyPal helps students track courses, tasks, timetable, and lecturers; get book
 
 - Client: HTML, CSS, JavaScript
 - Platform: Supabase (Auth, Edge Functions)
-- APIs: Google Books API; optional Gemini (Generative Language API)
+- APIs: Google Books API;
 
 ### Key Features <a name="key-features"></a>
 
@@ -49,7 +49,7 @@ StudyPal helps students track courses, tasks, timetable, and lecturers; get book
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- Live link: TBA
+- Live link: https://studentpalapp.onrender.com
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
@@ -92,7 +92,7 @@ If you fork this project, update the following in dashboard.js/auth.js:
 
 ### Run tests <a name="run-tests"></a>
 
-No automated tests are included yet.
+I have hosted the site on render you can access it here: https://studentpalapp.onrender.com
 
 ### Deployment <a name="triangular_flag_on_post-deployment"></a>
 
@@ -139,6 +139,8 @@ If you like this project, star the repo and share feedback.
   - Enable them in the app and in your browser/system settings. Keep the tab open.
 - AI schedule not working?
   - Ensure the Supabase function is deployed and GEMINI_API_KEY is set, otherwise the local smart planner runs.
+-  Do recommendations match each course?
+  - Yes books are grouped per course; click “Show more” to see additional picks.   
 
 ## 📝 License <a name="license"></a>
 
