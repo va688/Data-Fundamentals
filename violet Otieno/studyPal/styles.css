@@ -561,15 +561,33 @@ body {
     .dashboard-header {
       flex-direction: column;
       align-items: flex-start;
+      padding: 16px;
     }
+    .brand-title-dash { font-size: 20px; }
     .header-nav {
       width: 100%;
       justify-content: flex-start;
-    }
+      gap: 8px;
+      flex-wrap: wrap;
+    }\r
+    .nav-link { padding: 6px 10px; font-size: 13px; }
+    .logout-btn, .nav-icon-btn { padding: 6px 10px; }
     .dashboard-grid {
-      padding: 16px;
-      gap: 16px;
+      padding: 12px;
+      gap: 12px;
+      grid-template-columns: 1fr;
     }
+    .card { padding: 16px; }
+  }
+
+  @media (max-width: 480px) {
+    .dashboard-header { padding: 12px; }
+    .brand-title-dash { font-size: 18px; }
+    .card h2 { font-size: 18px; }
+    .input-group { gap: 8px; }
+    .input-group input, .input-group button { padding: 10px; font-size: 13px; }
+    #timetable .table th, #timetable .table td, #tasks .table th, #tasks .table td { font-size: 12px; padding: 8px 10px; }
+    .dashboard-sidebar { order: 0; }
   }
 
   /* ===== Timetable Table Styles ===== */
