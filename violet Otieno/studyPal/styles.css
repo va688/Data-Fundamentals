@@ -17,8 +17,15 @@ body {
     --slate-600: #475569;
   }
 
-  body:has(.dashboard) {
+body:has(.dashboard) {
     padding: 20px 20px 40px 20px;
+  }
+  
+  html, body { max-width: 100%; overflow-x: hidden; }
+  
+  /* Prevent long text overflow */
+  .item-list li span, .book-title, .lecturer-contact, .lecturer-name, .lecturer-course { 
+    overflow-wrap: anywhere; word-break: break-word; 
   }
   
   .container {
@@ -581,12 +588,13 @@ body {
   }
 
   @media (max-width: 480px) {
+    body:has(.dashboard) { padding: 8px; }
     .dashboard-header { padding: 12px; }
     .brand-title-dash { font-size: 18px; }
     .card h2 { font-size: 18px; }
     .input-group { gap: 8px; }
     .input-group input, .input-group button { padding: 10px; font-size: 13px; }
-    #timetable .table th, #timetable .table td, #tasks .table th, #tasks .table td { font-size: 12px; padding: 8px 10px; }
+    .dashboard-grid { padding: 8px; gap: 10px; }
     .dashboard-sidebar { order: 0; }
   }
 
@@ -602,6 +610,35 @@ body {
     overflow: hidden;
     background: #ffffff;
     box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+  }
+
+  /* Mobile card layout for timetable */
+  @media (max-width: 520px) {
+    #timetable .table { min-width: 0; border: none; box-shadow: none; }
+    #timetable .table thead { display: none; }
+    #timetable .table tbody tr { 
+      display: block; 
+      border: 1px solid #e6eef9; 
+      border-radius: 10px; 
+      padding: 8px 12px; 
+      margin-bottom: 10px; 
+      background: #fff; 
+    }
+    #timetable .table td { 
+      display: grid; 
+      grid-template-columns: 110px 1fr; 
+      align-items: start; 
+      gap: 8px; 
+      padding: 6px 0; 
+      border-bottom: none; 
+    }
+    #timetable .table td:last-child { grid-template-columns: 1fr; justify-content: end; text-align: right; }
+    #timetable .table td:nth-child(1)::before { content: 'Day'; font-weight: 600; color: #64748b; }
+    #timetable .table td:nth-child(2)::before { content: 'Course'; font-weight: 600; color: #64748b; }
+    #timetable .table td:nth-child(3)::before { content: 'Lecturer'; font-weight: 600; color: #64748b; }
+    #timetable .table td:nth-child(4)::before { content: 'Time'; font-weight: 600; color: #64748b; }
+    #timetable .table td:nth-child(5)::before { content: 'Venue'; font-weight: 600; color: #64748b; }
+    #timetable .table td:nth-child(6)::before { content: ''; }
   }
 
   #timetable .table thead th {
@@ -656,6 +693,32 @@ body {
     overflow: hidden;
     background: #ffffff;
     box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+  }
+
+  /* Mobile card layout for tasks */
+  @media (max-width: 420px) {
+    #tasks .table { min-width: 0; border: none; box-shadow: none; }
+    #tasks .table thead { display: none; }
+    #tasks .table tbody tr { 
+      display: block; 
+      border: 1px solid #e6eef9; 
+      border-radius: 10px; 
+      padding: 8px 12px; 
+      margin-bottom: 10px; 
+      background: #fff; 
+    }
+    #tasks .table td { 
+      display: grid; 
+      grid-template-columns: 100px 1fr; 
+      align-items: start; 
+      gap: 8px; 
+      padding: 6px 0; 
+      border-bottom: none; 
+    }
+    #tasks .table td:last-child { grid-template-columns: 1fr; justify-content: end; text-align: right; }
+    #tasks .table td:nth-child(1)::before { content: 'Task'; font-weight: 600; color: #64748b; }
+    #tasks .table td:nth-child(2)::before { content: 'Due Date'; font-weight: 600; color: #64748b; }
+    #tasks .table td:nth-child(3)::before { content: ''; }
   }
 
   /* ===== Recommendations Styles ===== */
